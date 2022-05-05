@@ -15,6 +15,7 @@
 		52BAE0F32824512C003CF720 /* TaskListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BAE0F22824512C003CF720 /* TaskListController.swift */; };
 		52BAE0F628245A74003CF720 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BAE0F528245A74003CF720 /* Task.swift */; };
 		52BAE0F828245C52003CF720 /* TaskStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BAE0F728245C52003CF720 /* TaskStorage.swift */; };
+		52BAE0FE282469B8003CF720 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BAE0FD282469B8003CF720 /* TaskCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		52BAE0F22824512C003CF720 /* TaskListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListController.swift; sourceTree = "<group>"; };
 		52BAE0F528245A74003CF720 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		52BAE0F728245C52003CF720 /* TaskStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskStorage.swift; sourceTree = "<group>"; };
+		52BAE0FD282469B8003CF720 /* TaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +46,7 @@
 		52BAE0D228244EBF003CF720 = {
 			isa = PBXGroup;
 			children = (
+				52BAE0F928246942003CF720 /* View */,
 				52BAE0F428245A55003CF720 /* Model */,
 				52BAE0DD28244EBF003CF720 /* To-Do Manager */,
 				52BAE0DC28244EBF003CF720 /* Products */,
@@ -79,6 +82,22 @@
 				52BAE0F728245C52003CF720 /* TaskStorage.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		52BAE0F928246942003CF720 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				52BAE0FA2824695D003CF720 /* Cells */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		52BAE0FA2824695D003CF720 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				52BAE0FD282469B8003CF720 /* TaskCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,6 +175,7 @@
 				52BAE0F32824512C003CF720 /* TaskListController.swift in Sources */,
 				52BAE0DF28244EBF003CF720 /* AppDelegate.swift in Sources */,
 				52BAE0F828245C52003CF720 /* TaskStorage.swift in Sources */,
+				52BAE0FE282469B8003CF720 /* TaskCell.swift in Sources */,
 				52BAE0E128244EBF003CF720 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
