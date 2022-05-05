@@ -39,5 +39,3 @@ enum TaskStatus {
     // завершенная
     case completed
 }
-
-// TESTTEST
