@@ -134,6 +134,28 @@ class TaskListController: UITableViewController {
         tableView.deleteRows(at: [indexPath], with: .automatic)
     }
     
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        // секция из которой происходит перемещение
+        let taskTypeFrom = sectionsTypesPosition[sourceIndexPath.section]
+        // секция в которую происходит перемещение
+        let taskTypeTo = sectionsTypesPosition[destinationIndexPath.section]
+        // безопасно извлекаем задачу, тем самым копируем ее
+        guard let movedTask = tasks[taskTypeFrom]?[sourceIndexPath.row] else {
+            return
+        }
+        
+        // удаляем задачу с места откуда она перенесена
+        tasks[taskTypeFrom]!.remove(at: sourceIndexPath.row)
+        // вставляем задачу на новую позицию
+        tasks[taskTypeTo]!.insert(movedTask, at: destinationIndexPath.row)
+        // если секция изменилась, изменяем тип задачи в соответствии с новой позицией
+        if taskTypeFrom != taskTypeTo {
+            tasks[taskTypeTo]![destinationIndexPath.row].type = taskTypeTo
+        }
+        // обновляем данные
+        tableView.reloadData()
+    }
+    
     // ячейка на основе ограничений
     private func getConfiguredTaskCell_constraints(for indexPath: IndexPath) -> UITableViewCell {
         // загружаем прототип ячейки по идентификатору
