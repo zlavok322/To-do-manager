@@ -17,6 +17,7 @@ class TaskEditController: UITableViewController {
     
     @IBOutlet var taskTitle: UITextField!
     @IBOutlet var taskTypeLabel: UILabel!
+    @IBOutlet var taskStatusSwitch: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +27,11 @@ class TaskEditController: UITableViewController {
         
         // обновление метки в соответствии текущим типом
         taskTypeLabel.text = taskTitles[taskType]
+        
+        // обновляем статус задачи
+        if taskStatus == .completed {
+            taskStatusSwitch.isOn = true
+        }
     }
     // Название типов задач
     private var taskTitles: [TaskPriority: String] = [
@@ -45,6 +51,29 @@ class TaskEditController: UITableViewController {
         return 3
     }
 
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toTaskTypeScreen" {
+            // ссылка на контроллер назначения
+            let destination = segue.destination as! TaskTypeController
+            // передача выброанного типа
+            destination.selectedType = taskType
+            // передача обработчика выбора типа
+            destination.doAfterTypeSelected = { [self] selectedType in
+                taskType = selectedType
+                // обновляем метку с текущим типом
+                taskTypeLabel.text = taskTitles[taskType]
+            }
+        }
+    }
 
+    @IBAction func saveTask(_ sender: UIBarButtonItem) {
+        // получаем актуальные значения
+        let title = taskTitle.text ?? ""
+        let type = taskType
+        let status: TaskStatus = taskStatusSwitch.isOn ? .completed : .planned
+        // вызываем обработчик
+        doAfterEdit?(title, type, status)
+        // возвращаемся к предыдущему экрану
+        navigationController?.popViewController(animated: true)
+    }
 }

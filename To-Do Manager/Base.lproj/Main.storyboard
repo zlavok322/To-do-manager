@@ -98,7 +98,7 @@
                     <navigationItem key="navigationItem" id="m3z-1a-MGB">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="2nu-qS-VPp">
                             <connections>
-                                <segue destination="9W6-ww-aYA" kind="show" id="KQB-US-jOk"/>
+                                <segue destination="9W6-ww-aYA" kind="show" identifier="toCreateScreen" id="KQB-US-jOk"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -110,7 +110,7 @@
         <!--Task Edit Controller-->
         <scene sceneID="hMF-Bu-15j">
             <objects>
-                <tableViewController id="9W6-ww-aYA" customClass="TaskEditController" customModule="To_Do_Manager" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="TaskEditController" id="9W6-ww-aYA" customClass="TaskEditController" customModule="To_Do_Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="GYf-P6-WBX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -171,7 +171,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="hy7-SS-Rce" kind="show" id="rTl-5e-onh"/>
+                                            <segue destination="hy7-SS-Rce" kind="show" identifier="toTaskTypeScreen" id="rTl-5e-onh"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="bfx-4r-e6Y">
@@ -180,6 +180,25 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bfx-4r-e6Y" id="NUy-JN-oDs">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Выполнена" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QUc-Cr-uVp">
+                                                    <rect key="frame" x="20" y="11" width="325" height="21.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="9W9-Eq-t4e">
+                                                    <rect key="frame" x="345" y="6.5" width="51" height="31"/>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="QUc-Cr-uVp" firstAttribute="leading" secondItem="NUy-JN-oDs" secondAttribute="leadingMargin" id="JM1-TA-LgL"/>
+                                                <constraint firstItem="9W9-Eq-t4e" firstAttribute="centerY" secondItem="NUy-JN-oDs" secondAttribute="centerY" id="Jyy-vK-6jc"/>
+                                                <constraint firstItem="QUc-Cr-uVp" firstAttribute="top" secondItem="NUy-JN-oDs" secondAttribute="topMargin" id="M3W-Xy-pSt"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="9W9-Eq-t4e" secondAttribute="trailing" id="qIf-2V-zUq"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="QUc-Cr-uVp" secondAttribute="bottom" id="rku-Nh-ad4"/>
+                                                <constraint firstItem="9W9-Eq-t4e" firstAttribute="leading" secondItem="QUc-Cr-uVp" secondAttribute="trailing" id="vFt-PD-5Sl"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -190,8 +209,15 @@
                             <outlet property="delegate" destination="9W6-ww-aYA" id="Zuc-0K-f2i"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="4uY-a3-V3E"/>
+                    <navigationItem key="navigationItem" id="4uY-a3-V3E">
+                        <barButtonItem key="rightBarButtonItem" title="Сохранить" id="fQW-N3-6dL">
+                            <connections>
+                                <action selector="saveTask:" destination="9W6-ww-aYA" id="GrF-5L-YKG"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="taskStatusSwitch" destination="9W9-Eq-t4e" id="CIA-DO-KBn"/>
                         <outlet property="taskTitle" destination="MXi-SM-SPb" id="S3p-o1-Ode"/>
                         <outlet property="taskTypeLabel" destination="3dJ-ok-sr2" id="sI3-Dl-Tah"/>
                     </connections>
