@@ -41,6 +41,7 @@ class TasksStorage: TasksStorageProtocol {
             let status: TaskStatus = statusRaw == "planned" ? .planned : .completed
             resultTasks.append(Task(title: title, type: type, status: status))
         }
+       
         return resultTasks
     }
     

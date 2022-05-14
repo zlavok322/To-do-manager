@@ -27,7 +27,8 @@ class TaskListController: UITableViewController {
             // сохранение задач
             var savingArray: [TaskProtocol] = []
             tasks.forEach { _, value in
-                savingArray += value
+            savingArray += value
+                
             }
             tasksStorage.saveTasks(savingArray)
         }
@@ -41,23 +42,14 @@ class TaskListController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // загрузка задач
-        loadTasks()
+        
         // кнопка активации режима редактирования
         navigationItem.leftBarButtonItem = editButtonItem
+        
+        overrideUserInterfaceStyle = .light
     }
 
-    private func loadTasks() {
-        // подготовка коллекции с задачами
-        // будем использовать только те задачи, для которых определена секция в таблице
-        sectionsTypesPosition.forEach { taskType in
-            tasks[taskType] = []
-        }
-        // загрузка и разбор задач их хранилища
-        tasksStorage.loadTasks().forEach { task in
-            tasks[task.type]?.append(task)
-        }
-    }
+   
     // MARK: - Table view data source
 
     // количество секций в таблице
@@ -79,6 +71,7 @@ class TaskListController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 //        return getConfiguredTaskCell_constraints(for: indexPath)
         // ячейка на основе стека
+       
         return getConfigureTaskCell_stack(for: indexPath)
     }
     
@@ -234,6 +227,7 @@ class TaskListController: UITableViewController {
     
     // ячейка на основе стека
     private func getConfigureTaskCell_stack(for indexPath: IndexPath) -> UITableViewCell {
+        
         // загружаем прототип ячейки по идентификатору
         let cell = tableView.dequeueReusableCell(withIdentifier: "taskCellStack", for: indexPath) as! TaskCell
         // получаем данные о задаче, которые необходимо вывести в ячейке
@@ -256,6 +250,7 @@ class TaskListController: UITableViewController {
             cell.symbol.textColor = .lightGray
         }
         return cell
+      
     }
     
     // передача данных
@@ -270,15 +265,15 @@ class TaskListController: UITableViewController {
         }
     }
     
+    // получение списка задач, их разбор и установка в свойство tasks
     func setTasks(_ tasksCollection: [TaskProtocol]) {
-        // подготовка коллекции с задачами
-        // будем использовать только те задачи, для которых определена секция
+    // подготовка коллекции с задачами
+    // будем использовать только те задачи, для которых определена секция
         sectionsTypesPosition.forEach { taskType in
-            tasks[taskType] = []
-        }
-        // загрузка и разбор задач из хранилища
+    tasks[taskType] = [] }
+    // загрузка и разбор задач из хранилища
         tasksCollection.forEach { task in
-            tasks[task.type]?.append(task)
-        }
+    tasks[task.type]?.append(task) }
     }
+
 }

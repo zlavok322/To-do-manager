@@ -19,6 +19,7 @@ class TaskEditController: UITableViewController {
     @IBOutlet var taskTypeLabel: UILabel!
     @IBOutlet var taskStatusSwitch: UISwitch!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,6 +33,7 @@ class TaskEditController: UITableViewController {
         if taskStatus == .completed {
             taskStatusSwitch.isOn = true
         }
+        
     }
     // Название типов задач
     private var taskTitles: [TaskPriority: String] = [
@@ -50,7 +52,15 @@ class TaskEditController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return 3
     }
-
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 2 {
+            if let cell = tableView.cellForRow(at: indexPath) {
+                cell.selectionStyle = .none
+            }
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toTaskTypeScreen" {
             // ссылка на контроллер назначения
@@ -68,12 +78,28 @@ class TaskEditController: UITableViewController {
 
     @IBAction func saveTask(_ sender: UIBarButtonItem) {
         // получаем актуальные значения
-        let title = taskTitle.text ?? ""
+//        var title: String = ""
+        var title = taskTitle.text ?? ""
         let type = taskType
         let status: TaskStatus = taskStatusSwitch.isOn ? .completed : .planned
-        // вызываем обработчик
-        doAfterEdit?(title, type, status)
-        // возвращаемся к предыдущему экрану
-        navigationController?.popViewController(animated: true)
+        if !(taskTitle.text?.trimmingCharacters(in: .whitespaces).isEmpty ?? false) {
+            title = taskTitle.text ?? ""
+            doAfterEdit?(title, type, status)
+            // возвращаемся к предыдущему экрану
+            navigationController?.popViewController(animated: true)
+        } else {
+            errorAlert()
+        }
+//        // вызываем обработчик
+//        doAfterEdit?(title, type, status)
+//        // возвращаемся к предыдущему экрану
+//        navigationController?.popViewController(animated: true)
+    }
+    
+    func errorAlert() {
+        let alert = UIAlertController(title: "Ошибка", message: "Не может быть пустой задачи", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }
+
