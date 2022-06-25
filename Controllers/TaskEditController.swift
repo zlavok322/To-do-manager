@@ -90,10 +90,6 @@ class TaskEditController: UITableViewController {
         } else {
             errorAlert()
         }
-//        // вызываем обработчик
-//        doAfterEdit?(title, type, status)
-//        // возвращаемся к предыдущему экрану
-//        navigationController?.popViewController(animated: true)
     }
     
     func errorAlert() {

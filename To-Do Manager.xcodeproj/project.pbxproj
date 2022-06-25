@@ -51,9 +51,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		528B0DEE284E72A7006F34A6 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				52BAE0F22824512C003CF720 /* TaskListController.swift */,
+				52A265D0282ADD31001F8698 /* TaskEditController.swift */,
+				52A265D2282AE7E5001F8698 /* TaskTypeController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		52BAE0D228244EBF003CF720 = {
 			isa = PBXGroup;
 			children = (
+				528B0DEE284E72A7006F34A6 /* Controllers */,
 				52BAE0F928246942003CF720 /* View */,
 				52BAE0F428245A55003CF720 /* Model */,
 				52BAE0DD28244EBF003CF720 /* To-Do Manager */,
@@ -74,9 +85,6 @@
 			children = (
 				52BAE0DE28244EBF003CF720 /* AppDelegate.swift */,
 				52BAE0E028244EBF003CF720 /* SceneDelegate.swift */,
-				52BAE0F22824512C003CF720 /* TaskListController.swift */,
-				52A265D0282ADD31001F8698 /* TaskEditController.swift */,
-				52A265D2282AE7E5001F8698 /* TaskTypeController.swift */,
 				52BAE0E428244EBF003CF720 /* Main.storyboard */,
 				52BAE0E728244EC0003CF720 /* Assets.xcassets */,
 				52BAE0E928244EC0003CF720 /* LaunchScreen.storyboard */,
